@@ -1,4 +1,4 @@
-import { LightningElement,track, api, wire} from 'lwc';
+import { LightningElement,track, api} from 'lwc';
 import { refreshApex } from '@salesforce/apex';
 // import server side apex class method 
 import getDocumentList from '@salesforce/apex/customSearchSobjectLWC.getDocumentList';
@@ -39,24 +39,6 @@ export default class ShowDocuments extends LightningElement {
     @track docData;
     @track isModalOpen = false;
     
-    /*
-    @api searchword;
-    
-    @wire(getDocumentList, { searchKey: item })
-    wiredInfo({ error, data }) {
-        alert('In child cmp '+this. searchword);
-        if (data) {
-            alert(JSON.stringify(data));
-           // this.apexData = data;
-            this.error = undefined;
-        } else if (error) {
-            this.error = error;
-            
-        }
-    }*/
-
-
-
 @api handleSearchKeyword(item1) {
     if (item1 !== '') {
         getDocumentList({
@@ -73,8 +55,7 @@ export default class ShowDocuments extends LightningElement {
                     variant: 'error',
                     message: error.body.message,
                 });
-                this.dispatchEvent(event);
-                // reset contacts var with null   
+                this.dispatchEvent(event); 
                 this.documentRecord = null;
             });
     } else {
@@ -100,7 +81,7 @@ handleRowAction(event) {
         default:
     }
 }
-
+//Not deleting from SF record just removing from DataTable
 deleteRow(row) {
     const { id } = row;
     const index = this.findRowIndexById(id);
@@ -144,26 +125,5 @@ submitDetails() {
     this.getLatest();
 }
 
-getLatest() {
-    refreshApex(this.docData)
-    .then(()=> {
-        this.dispatchEvent(
-            new ShowToastEvent({
-                title: 'Success',
-                message: 'Refreshed Data',
-                variant: 'success'
-            })
-        );
-    })
-    .catch((error) => {
-        let errors=reduceErrors(error).reduce((accumulator, currentValue) => accumulator.concat(', ', currentValue), '');
-        this.dispatchEvent(
-            new ShowToastEvent({
-                title: 'Error Refreshing Data',
-                message: errors.substring(2),
-                variant: 'error'
-            })
-        );
-    });
-}
+
 }
