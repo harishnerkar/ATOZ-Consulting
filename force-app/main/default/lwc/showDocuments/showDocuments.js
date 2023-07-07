@@ -118,12 +118,5 @@ openModal() {
 }
 closeModal() {
     this.isModalOpen = false;
-    this.getLatest();
 }
-submitDetails() {
-    this.isModalOpen = false;
-    this.getLatest();
-}
-
-
 }
