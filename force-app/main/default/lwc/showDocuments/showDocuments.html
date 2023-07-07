@@ -34,21 +34,19 @@
                      <lightning-input-field field-name={nameField}> </lightning-input-field>
                      <lightning-output-field field-name={doc_Version} > </lightning-output-field>
                      <lightning-output-field field-name={doc_Category} > </lightning-output-field>
-                     <div class="slds-var-m-top_medium">
-                        <lightning-button variant="brand" type="submit" label="Save">
+                     <div class="slds-var-m-top_medium slds-align_absolute-center">
+                        <lightning-button variant="brand" type="submit" label="Save" onclick={closeModal}>
                         </lightning-button>
+                        <lightning-button label="Close" onclick={closeModal}></lightning-button>
                      </div>
                   </lightning-record-edit-form> 
                   </div>
                  <!-- Modal/Popup Box LWC footer starts here -->
                  <footer class="slds-modal__footer">
-                     <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
-                     <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button>
                  </footer>
              </div>
          </section>
          <div class="slds-backdrop slds-backdrop_open"></div>
      </template>
-   
       </lightning-card>
    </template>
