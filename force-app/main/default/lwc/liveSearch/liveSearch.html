@@ -1,0 +1,21 @@
+<template>
+    <lightning-card>
+        <div class="slds-m-around_medium">
+      
+      <div class="slds-m-bottom_small">
+          <lightning-input type="text"
+             value={searchValue}
+             label="Document Name"
+             onchange={searchKeyword}
+             ></lightning-input>
+       </div>
+       
+       <lightning-button label="Search"
+          onclick={handleSearchKeyword}
+          variant="brand"></lightning-button>
+
+         
+    </div>
+    <c-show-documents search-word={documentRecord}></c-show-documents>
+</lightning-card>
+ </template>
